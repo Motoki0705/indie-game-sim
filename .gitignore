@@ -1,7 +1,47 @@
-backend/.venv/
-backend/__pycache__/
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.venv/
+venv/
+
+# Node.js
+node_modules/
+dist/
+coverage/
+.npm/
+.pnpm-store/
+
+# Build / cache
+.cache/
+tmp/
+
+# Project-specific runtime data
 backend/runtime/
 backend/data/meta.json
 backend/data/runs/
-frontend/node_modules/
-frontend/dist/
