@@ -10,10 +10,7 @@ import {
   nextMonth,
   purchaseUpgrade,
 } from './api/client'
-import { ActionPanel } from './components/ActionPanel'
-import { LogPanel } from './components/LogPanel'
-import { MetaPanel } from './components/MetaPanel'
-import { StatusPanel } from './components/StatusPanel'
+import { GameScreen } from './components/ui-game/GameScreen'
 import type { ActionDefinition, MetaState, RunState, UpgradeDefinition } from './types/game'
 
 function App() {
@@ -44,7 +41,6 @@ function App() {
   }, [])
 
   const runId = run?.run_id
-
   const canResume = useMemo(() => Boolean(runId), [runId])
 
   async function onCreateRun() {
@@ -121,34 +117,37 @@ function App() {
 
   return (
     <main className="app-root">
-      <header className="hero">
-        <h1>30 to 35 - Local MVP</h1>
-        <p>Monthly life sim loop with reincarnation upgrades.</p>
-      </header>
-
-      <section className="panel controls">
-        <button disabled={busy} onClick={onCreateRun}>
-          Start New Run
+      <section className="toolbar">
+        <button className="toolbar-btn" disabled={busy} onClick={onCreateRun}>
+          New Run
         </button>
-        <button disabled={busy || !canResume} onClick={onResumeRun}>
-          Refresh Current Run
+        <button className="toolbar-btn" disabled={busy || !canResume} onClick={onResumeRun}>
+          Refresh
         </button>
         {error ? <p className="danger">{error}</p> : null}
       </section>
 
-      {meta ? <MetaPanel meta={meta} upgrades={upgrades} busy={busy} onUpgrade={onUpgrade} /> : null}
       {run ? (
-        <>
-          <StatusPanel run={run} />
-          <ActionPanel run={run} actions={actions} busy={busy} onAction={onAction} onNextMonth={onNextMonth} />
-          <LogPanel run={run} />
-        </>
+        <GameScreen run={run} actions={actions} busy={busy} onAction={onAction} onNextMonth={onNextMonth} />
       ) : (
-        <section className="panel">
-          <h2>No active run</h2>
-          <p>Press "Start New Run" to begin.</p>
-        </section>
+        <section className="empty-state">Start New Run to open the image-based game screen.</section>
       )}
+
+      {meta ? (
+        <section className="meta-strip">
+          <span>Soul: {meta.soul_points}</span>
+          {upgrades.map((u) => {
+            const current = meta.upgrades[u.upgrade_id] ?? 0
+            const cost = u.cost_base * (current + 1)
+            const disabled = busy || current >= u.max_level || meta.soul_points < cost
+            return (
+              <button key={u.upgrade_id} className="toolbar-btn" disabled={disabled} onClick={() => onUpgrade(u.upgrade_id)}>
+                {u.title} Lv.{current}
+              </button>
+            )
+          })}
+        </section>
+      ) : null}
     </main>
   )
 }
