@@ -2,6 +2,10 @@
 
 Python(FastAPI) backend + Node.js(React/Vite) frontend で、30歳〜35歳の周回ライフシムをローカル実行するMVPです。
 
+<p align="center">
+  <img src="assets/demo.png" width="840" />
+</p>
+
 ## Directory Layout
 - `backend/app/domain`: ゲームルールと状態遷移（純ロジック）
 - `backend/app/services`: ユースケース（ラン開始・行動適用・月次進行・転生）
