@@ -1,0 +1,11 @@
+{
+  "name": "indie-game-sim",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "dev:backend": "UV_CACHE_DIR=/tmp/.uv-cache uv run --directory backend python -m app.main",
+    "dev:backend:bg": "UV_CACHE_DIR=/tmp/.uv-cache uv run --directory backend python scripts/run_backend_bg.py",
+    "stop:backend:bg": "UV_CACHE_DIR=/tmp/.uv-cache uv run --directory backend python scripts/stop_backend_bg.py"
+  }
+}
