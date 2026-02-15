@@ -1,0 +1,44 @@
+# UI Game Asset Structure (Planned)
+
+```text
+frontend/src/assets/ui-game/
+  panels/
+    header_frame.png
+    name_plate.png
+    currency_panel.png
+    month_progress_panel.png
+    right_control_panel.png
+  bars/
+    stat_bar_frame.png
+    stat_bar_fill_hp.png
+    stat_bar_fill_health.png
+    stat_bar_fill_morale.png
+  rails/
+    resource_slot_frame.png
+  icons/
+    currency_coin.png
+    resource_heart.png
+    resource_clover.png
+    resource_folder.png
+    resource_pc.png
+    action_guitar.png
+    action_palette.png
+    action_book.png
+    action_invest.png
+  stage/
+    room_background.png
+    furniture_set.png
+    character_idle.png
+    character_work.png
+    character_rest.png
+  overlays/
+    action_popup_frame.png
+    arrow_next.png
+  buttons/
+    button_primary_idle.png
+    button_primary_hover.png
+    button_primary_press.png
+  calendar/
+    day_dot_empty.png
+    day_dot_filled.png
+```
